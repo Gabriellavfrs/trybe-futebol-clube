@@ -1,12 +1,12 @@
-import ITeam from '../Interfaces/ITeam';
-import { ITeamModel } from '../Interfaces/ITeamModel';
+import ITeam from '../Interfaces/teams/ITeam';
+import { ITeamModel } from '../Interfaces/teams/ITeamModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import TeamModel from '../models/TeamModel';
 
 export default class TeamService {
   constructor(
     private teamModel: ITeamModel = new TeamModel(),
-  ) {}
+  ) { }
 
   public async getAllTeams(): Promise<ServiceResponse<ITeam[]>> {
     const allTeams = await this.teamModel.findAll();
