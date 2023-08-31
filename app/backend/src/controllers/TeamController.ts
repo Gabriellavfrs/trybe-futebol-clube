@@ -7,15 +7,15 @@ export default class TeamController {
     private teamService = new TeamService(),
   ) {}
 
-  public async getAllTeams(req: Request, res: Response) {
+  public async getAllTeams(req: Request, res: Response) :Promise<Response> {
     const { status, data } = await this.teamService.getAllTeams();
-    res.status(mapStatusHTTP(status)).json(data);
+    return res.status(mapStatusHTTP(status)).json(data);
   }
 
-  public async getTeamById(req: Request, res: Response) {
+  public async getTeamById(req: Request, res: Response) :Promise<Response> {
     const { id } = req.params;
     const { status, data } = await this.teamService.getTeamById(Number(id));
 
-    res.status(mapStatusHTTP(status)).json(data);
+    return res.status(mapStatusHTTP(status)).json(data);
   }
 }
