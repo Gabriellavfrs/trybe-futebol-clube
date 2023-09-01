@@ -9,12 +9,17 @@ export default class MatchController {
 
   public async getMatches(req: Request, res: Response):Promise<Response> {
     const { inProgress } = req.query;
-    console.log(typeof inProgress);
     if (!inProgress) {
       const { status, data } = await this.matchService.getAllMatches();
       return res.status(mapStatusHTTP(status)).json(data);
     }
     const { status, data } = await this.matchService.getByProgress(inProgress as string);
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
+
+  public async updateMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    const { status, data } = await this.matchService.updateMatch(Number(id));
     return res.status(mapStatusHTTP(status)).json(data);
   }
 }
