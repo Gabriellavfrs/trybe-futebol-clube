@@ -17,7 +17,7 @@ export default class Validations {
     next();
   }
 
-  static validateToken(req: Request, res: Response, next: NextFunction) {
+  static validateToken(req: Request, res: Response, next: NextFunction): Response | void {
     const { authorization } = req.headers;
     if (!authorization) {
       return res.status(401).json({ message: 'Token not found' });
