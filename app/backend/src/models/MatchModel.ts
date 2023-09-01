@@ -15,4 +15,16 @@ export default class MatchModel implements IMatchModel {
     });
     return dbData.map(({ dataValues }) => dataValues);
   }
+
+  async findByProgress(inProgress: string): Promise<IMatch[]> {
+    const boolValue = inProgress === 'true';
+    const dbData = await this.model.findAll({
+      where: { inProgress: boolValue },
+      include: [
+        { model: SequelizeTeam, as: 'homeTeam', attributes: ['teamName'] },
+        { model: SequelizeTeam, as: 'awayTeam', attributes: ['teamName'] },
+      ],
+    });
+    return dbData.map(({ dataValues }) => dataValues);
+  }
 }
