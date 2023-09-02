@@ -27,6 +27,24 @@ export default class MatchService {
   }
 
   public async createMatch(match: Omit<IMatch, 'id'>): Promise<ServiceResponse<IMatch>> {
+    const { homeTeamId, awayTeamId } = match;
+    console.log(typeof homeTeamId);
+    if (homeTeamId === awayTeamId) {
+      return {
+        status: 'UNPROC_ENTITY',
+        data: { message: 'It is not possible to create a match with two equal teams' },
+      };
+    }
+
+    const homeTeam = await this.matchModel.findById(homeTeamId);
+    const awayTeam = await this.matchModel.findById(awayTeamId);
+    if (!homeTeam || !awayTeam) {
+      return {
+        status: 'NOT_FOUND',
+        data: { message: 'There is no team with such id!' },
+      };
+    }
+
     const newMatch = await this.matchModel.create(match);
     return { status: 'CREATED', data: newMatch };
   }
