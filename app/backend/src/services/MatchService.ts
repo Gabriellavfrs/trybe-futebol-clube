@@ -25,4 +25,9 @@ export default class MatchService {
     }
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
   }
+
+  public async createMatch(match: Omit<IMatch, 'id'>): Promise<ServiceResponse<IMatch>> {
+    const newMatch = await this.matchModel.create(match);
+    return { status: 'CREATED', data: newMatch };
+  }
 }

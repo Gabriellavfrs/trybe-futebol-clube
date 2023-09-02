@@ -1,15 +1,20 @@
-import { DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model } from 'sequelize';
 import db from '.';
 import SequelizeTeam from './SequelizeTeam';
 
 class SequelizeMatch extends Model<InferAttributes<SequelizeMatch>,
 InferCreationAttributes<SequelizeMatch>> {
-  declare id: number;
+  declare id: CreationOptional<number>;
   declare homeTeamId: number;
   declare homeTeamGoals: number;
   declare awayTeamId: number;
   declare awayTeamGoals: number;
-  declare inProgress: boolean;
+  declare inProgress: CreationOptional<boolean>;
 }
 
 SequelizeMatch.init({
@@ -38,6 +43,7 @@ SequelizeMatch.init({
   inProgress: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
 }, {
   sequelize: db,

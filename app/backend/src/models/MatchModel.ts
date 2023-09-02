@@ -33,4 +33,9 @@ export default class MatchModel implements IMatchModel {
     if (!affectedRows) return null;
     return true;
   }
+
+  async create(match: Omit<IMatch, 'id'>): Promise<IMatch> {
+    const dbData = await this.model.create(match);
+    return dbData.dataValues;
+  }
 }
