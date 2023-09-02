@@ -22,7 +22,7 @@ export default class Validations {
     if (!authorization) {
       return res.status(401).json({ message: 'Token not found' });
     }
-    const token = JSON.parse(authorization.split(' ')[1]);
+    const token = authorization.split(' ')[1];
     try {
       const validToken = Auth.JwtVerify(token);
       req.body.payload = validToken;

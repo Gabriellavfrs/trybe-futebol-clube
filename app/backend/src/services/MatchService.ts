@@ -18,8 +18,8 @@ export default class MatchService {
     return { status: 'SUCCESSFUL', data: matches };
   }
 
-  public async updateProgress(id: number): Promise<ServiceResponse<IMatch>> {
-    const updatedMatch = await this.matchModel.update(id, { inProgress: false });
+  public async updateMatch(id: number, data: Partial<IMatch>): Promise<ServiceResponse<IMatch>> {
+    const updatedMatch = await this.matchModel.update(id, data);
     if (!updatedMatch) {
       return { status: 'CONFLICT', data: { message: 'match has not been updated' } };
     }
