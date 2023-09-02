@@ -9,7 +9,7 @@ router.get('/', (req: Request, res: Response) => matchController.getMatches(req,
 router.patch(
   '/:id/finish',
   Validations.validateToken,
-  (req: Request, res: Response) => matchController.updateMatch(req, res),
+  (req: Request, res: Response) => matchController.updateProgress(req, res),
 );
 
 export default router;

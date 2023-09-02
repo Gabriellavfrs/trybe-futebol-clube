@@ -28,8 +28,8 @@ export default class MatchModel implements IMatchModel {
     return dbData.map(({ dataValues }) => dataValues);
   }
 
-  async update(id: number): Promise<boolean | null> {
-    const [affectedRows] = await this.model.update({ inProgress: false }, { where: { id } });
+  async update(id: number, data: Partial<IMatch>): Promise<boolean | null> {
+    const [affectedRows] = await this.model.update(data, { where: { id } });
     if (!affectedRows) return null;
     return true;
   }
