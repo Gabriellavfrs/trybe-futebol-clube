@@ -28,7 +28,6 @@ export default class MatchService {
 
   public async createMatch(match: Omit<IMatch, 'id'>): Promise<ServiceResponse<IMatch>> {
     const { homeTeamId, awayTeamId } = match;
-    console.log(typeof homeTeamId);
     if (homeTeamId === awayTeamId) {
       return {
         status: 'UNPROC_ENTITY',
