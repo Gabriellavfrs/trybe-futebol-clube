@@ -29,9 +29,9 @@ COUNT(pointsByMatch) AS totalGames,
 COUNT(CASE WHEN pointsByMatch = 3 THEN 1 ELSE NULL END) AS totalVictories,
 COUNT(CASE WHEN pointsByMatch = 1 THEN 1 ELSE NULL END) AS totalDraws,
 COUNT(CASE WHEN pointsByMatch = 0 THEN 1 ELSE NULL END) AS totalLosses,
-CAST(SUM(home_team_goals) AS SIGNED) AS goalsFavor,
-CAST(SUM(away_team_goals) AS SIGNED) AS goalsOwn,
-CAST((SUM(home_team_goals) - SUM(away_team_goals)) AS SIGNED) AS goalsBalance,
+CAST(SUM(away_team_goals) AS SIGNED) AS goalsFavor,
+CAST(SUM(home_team_goals) AS SIGNED) AS goalsOwn,
+CAST((SUM(away_team_goals) - SUM(home_team_goals)) AS SIGNED) AS goalsBalance,
 ROUND((SUM(pointsByMatch) / (COUNT(pointsByMatch) * 3)) * 100, 2) AS efficiency
 FROM (
 SELECT t.team_name, m.home_team_goals, m.away_team_goals,
