@@ -17,19 +17,19 @@ export default class MatchController {
     return res.status(mapStatusHTTP(status)).json(data);
   }
 
-  public async updateProgress(req: Request, res: Response) {
+  public async updateProgress(req: Request, res: Response):Promise<Response> {
     const { id } = req.params;
     const { status, data } = await this.matchService.updateMatch(Number(id), { inProgress: false });
     return res.status(mapStatusHTTP(status)).json(data);
   }
 
-  public async updateGoals(req: Request, res: Response) {
+  public async updateGoals(req: Request, res: Response):Promise<Response> {
     const { id } = req.params;
     const { status, data } = await this.matchService.updateMatch(Number(id), req.body);
     return res.status(mapStatusHTTP(status)).json(data);
   }
 
-  public async createMatch(req: Request, res: Response) {
+  public async createMatch(req: Request, res: Response):Promise<Response> {
     const { status, data } = await this.matchService.createMatch(req.body);
     return res.status(mapStatusHTTP(status)).json(data);
   }
