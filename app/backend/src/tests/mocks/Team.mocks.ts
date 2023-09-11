@@ -9,6 +9,12 @@ const teams = [
   }
 ];
 
+const team = {
+  id: 1,
+  teamName: 'Time A'
+};
+
 export {
   teams,
+  team,
 }
