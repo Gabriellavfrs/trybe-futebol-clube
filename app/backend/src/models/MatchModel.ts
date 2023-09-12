@@ -13,7 +13,7 @@ export default class MatchModel implements IMatchModel {
         { model: SequelizeTeam, as: 'awayTeam', attributes: ['teamName'] },
       ],
     });
-    return dbData.map(({ dataValues }) => dataValues);
+    return dbData;
   }
 
   async findByProgress(inProgress: string): Promise<IMatch[]> {
@@ -25,13 +25,13 @@ export default class MatchModel implements IMatchModel {
         { model: SequelizeTeam, as: 'awayTeam', attributes: ['teamName'] },
       ],
     });
-    return dbData.map(({ dataValues }) => dataValues);
+    return dbData;
   }
 
   async findById(id:number): Promise<IMatch | null> {
     const dbData = await this.model.findByPk(id);
     if (!dbData) return null;
-    return dbData.dataValues;
+    return dbData;
   }
 
   async update(id: number, data: Partial<IMatch>): Promise<boolean | null> {
@@ -42,6 +42,6 @@ export default class MatchModel implements IMatchModel {
 
   async create(match: Omit<IMatch, 'id'>): Promise<IMatch> {
     const dbData = await this.model.create(match);
-    return dbData.dataValues;
+    return dbData;
   }
 }

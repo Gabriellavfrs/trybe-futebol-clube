@@ -20,7 +20,7 @@ describe('Teams test', function () {
     const { status, body } = await chai.request(app).get('/teams');
 
     expect(status).to.equal(200);
-    expect(body).to.be.deep.equal(teams);
+    expect(body).to.deep.equal(teams);
   });
 
   it('Returns a team by id', async function () {
@@ -29,6 +29,6 @@ describe('Teams test', function () {
     const { status, body } = await chai.request(app).get('/teams/1');
 
     expect(status).to.equal(200);
-    expect(body).to.be.deep.equal(team);
+    expect(body).to.deep.equal(team);
   });
 });

@@ -17,7 +17,7 @@ const { expect } = chai;
 describe('Users test', function () {
   beforeEach(sinon.restore);
 
-  it('Returns all teams', async function () {
+  it('Returns user role', async function () {
     sinon.stub(Auth, 'JwtVerify').resolves();
     sinon.stub(Validations, 'validateToken').returns();
     sinon.stub(SequelizeUser, 'findOne').resolves(validAdmin as any);
@@ -28,6 +28,6 @@ describe('Users test', function () {
       .send({ email: validAdmin.email, password: validAdmin.password });
 
     expect(status).to.equal(200);
-    expect(body).to.be.deep.equal({ "role": "admin" });
+    expect(body).to.deep.equal({ "role": "admin" });
   });
 });
