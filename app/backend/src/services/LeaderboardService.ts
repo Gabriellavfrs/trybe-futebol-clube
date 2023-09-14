@@ -17,4 +17,9 @@ export default class LeaderboardService {
     const awayLeaderboard = await this.leaderboardModel.findAllAwayLeaderboard();
     return { status: 'SUCCESSFUL', data: awayLeaderboard };
   }
+
+  public async getAllLeaderboard() :Promise<ServiceResponse<ILeaderboard[]>> {
+    const allLeaderboard = await this.leaderboardModel.findAllTeamsLeaderboard();
+    return { status: 'SUCCESSFUL', data: allLeaderboard };
+  }
 }
